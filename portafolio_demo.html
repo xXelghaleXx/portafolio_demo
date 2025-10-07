@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adrian Nuñuvero Ochoa - Desarrollador Full-Stack</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #DC2626;
+            --dark-red: #991B1B;
+            --black: #0A0A0A;
+            --light-black: #1A1A1A;
+            --gray: #404040;
+            --light-gray: #737373;
+            --white: #FFFFFF;
+            --off-white: #F5F5F5;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--gray);
+            background-color: var(--black);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--light-black);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--primary-red);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--white);
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--primary-red);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95em;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-red);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--light-black) 0%, var(--black) 100%);
+            padding: 100px 0 80px;
+            text-align: center;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid var(--primary-red);
+            margin: 0 auto 30px;
+            object-fit: cover;
+            box-shadow: 0 10px 40px rgba(220, 38, 38, 0.4);
+            transition: transform 0.3s;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .hero h1 {
+            color: var(--white);
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero .highlight {
+            color: var(--primary-red);
+        }
+
+        .hero h2 {
+            color: var(--light-gray);
+            font-size: 1.5em;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+
+        .hero p {
+            color: var(--light-gray);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 1.1em;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-red);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--dark-red);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--black);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .section-title {
+            color: var(--white);
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            color: var(--light-gray);
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+
+        .red-line {
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-red);
+            margin: 0 auto 40px;
+        }
+
+        /* Experience Section */
+        .experience-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        .experience-card {
+            background-color: var(--light-black);
+            padding: 35px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-red);
+            transition: transform 0.3s;
+        }
+
+        .experience-card:hover {
+            transform: translateX(8px);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .experience-card h3 {
+            color: var(--white);
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+
+        .experience-card .role {
+            color: var(--primary-red);
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .experience-card .period {
+            color: var(--light-gray);
+            font-size: 0.95em;
+            white-space: nowrap;
+        }
+
+        .experience-card .company-desc {
+            color: var(--light-gray);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .experience-card ul {
+            margin-left: 20px;
+            color: var(--light-gray);
+        }
+
+        .experience-card li {
+            margin-bottom: 10px;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--light-black);
+            padding: 30px;
+            border-radius: 8px;
+            border-top: 4px solid var(--primary-red);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+        }
+
+        .project-card h3 {
+            color: var(--white);
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        .project-card .role {
+            color: var(--primary-red);
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .project-card p {
+            color: var(--light-gray);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-card {
+            background-color: var(--light-black);
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid var(--gray);
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            border-color: var(--primary-red);
+            transform: scale(1.05);
+        }
+
+        .skill-card .skill-name {
+            color: var(--white);
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .skill-card .skill-level {
+            color: var(--primary-red);
+            font-weight: 500;
+        }
+
+        /* Education Section */
+        .education-card {
+            background-color: var(--light-black);
+            padding: 40px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-red);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .education-card h3 {
+            color: var(--white);
+            font-size: 1.6em;
+            margin-bottom: 10px;
+        }
+
+        .education-card .degree {
+            color: var(--primary-red);
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .education-card .period {
+            color: var(--light-gray);
+        }
+
+        /* Contact Section */
+        #contacto {
+            background: linear-gradient(135deg, var(--light-black) 0%, var(--black) 100%);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--light-black);
+            border-radius: 8px;
+            border: 2px solid var(--gray);
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            border-color: var(--primary-red);
+            transform: translateY(-5px);
+        }
+
+        .contact-item .icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .contact-item h3 {
+            color: var(--white);
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .contact-item a {
+            color: var(--primary-red);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--dark-red);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--light-black);
+            padding: 30px 0;
+            text-align: center;
+            color: var(--light-gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero h2 {
+                font-size: 1.2em;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .projects-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">Adrian<span>.</span>dev</div>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#experiencia">Experiencia</a></li>
+                    <li><a href="#proyectos">Proyectos</a></li>
+                    <li><a href="#habilidades">Habilidades</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="inicio">
+        <div class="container">
+            <img src="adrian_foto_perfil.jpg" alt="Adrian Nuñuvero Ochoa" class="profile-image">
+            <h1>Adrian Nuñuvero <span class="highlight">Ochoa</span></h1>
+            <h2>Desarrollador Full-Stack | Especialista Frontend</h2>
+            <p>
+                Desarrollador de software con experiencia en Django, React, Flutter y diseño UI/UX. 
+                Especializado en crear soluciones web escalables y experiencias de usuario excepcionales.
+            </p>
+            <div class="cta-buttons">
+                <a href="#contacto" class="btn btn-primary">Contáctame</a>
+                <a href="https://www.linkedin.com/in/adrian-nu%C3%B1uvero-ochoa-b5a3a2319/" target="_blank" class="btn btn-secondary">Ver LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="experiencia">
+        <div class="container">
+            <h2 class="section-title">Experiencia Profesional</h2>
+            <div class="red-line"></div>
+            
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div>
+                            <h3>RCM Solutions S.A.C.</h3>
+                            <span class="role">Desarrollador Full-Stack</span>
+                        </div>
+                        <span class="period">Abril 2025 - Julio 2025</span>
+                    </div>
+                    <p class="company-desc">Consultoría especializada en Seguridad, Salud Ocupacional y Medio Ambiente (SSOMA)</p>
+                    <ul>
+                        <li>Desarrollé plataforma web completa para gestión de certificaciones SSOMA con Django 5.2, Python y MySQL</li>
+                        <li>Implementé sistema de autenticación con roles diferenciados y panel administrativo con métricas en tiempo real</li>
+                        <li>Creé sistema de generación automatizada de certificados PDF con códigos QR únicos</li>
+                        <li>Diseñé interfaz intuitiva optimizada para usuarios y administradores</li>
+                        <li>Configuré deployment en producción con dominio personalizado y optimización móvil</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div>
+                            <h3>TECSUP</h3>
+                            <span class="role">Desarrollador de Software - Departamento DPE</span>
+                        </div>
+                        <span class="period">Enero 2025 - Marzo 2025</span>
+                    </div>
+                    <p class="company-desc">Organización educativa de servicios de consultoría e investigación tecnológica</p>
+                    <ul>
+                        <li>Desarrollé aplicación para validación y análisis de CV mediante Inteligencia Artificial</li>
+                        <li>Implementé chatbot con simulación de entrevistas y retroalimentación en tiempo real</li>
+                        <li>Diseñé sistema de almacenamiento seguro de datos e historial de interacciones</li>
+                        <li>Generé sistema de informes automáticos con análisis de fortalezas y áreas de mejora</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="proyectos">
+        <div class="container">
+            <h2 class="section-title">Proyectos Destacados</h2>
+            <div class="red-line"></div>
+            
+            <div class="projects-grid">
+                <div class="project-card" style="border-top: 4px solid var(--primary-red); background: linear-gradient(135deg, var(--light-black) 0%, #1a1414 100%);">
+                    <h3>RCM Solutions - Plataforma SSOMA</h3>
+                    <span class="role">Desarrollador Full-Stack | Django + Python + MySQL</span>
+                    <p>Sistema completo de gestión de certificaciones en Seguridad, Salud Ocupacional y Medio Ambiente. 
+                    Incluye autenticación con roles, panel administrativo con métricas en tiempo real, generación automática 
+                    de certificados PDF con códigos QR únicos, sistema de verificación pública y deployment en producción 
+                    con dominio personalizado.</p>
+                </div>
+
+                <div class="project-card">
+                    <h3>TECSUP - Sistema de Análisis CV con IA</h3>
+                    <span class="role">Desarrollador de Software | IA & Chatbot</span>
+                    <p>Aplicación innovadora para validación y análisis de currículums mediante Inteligencia Artificial. 
+                    Chatbot que simula entrevistas con retroalimentación en tiempo real, almacenamiento seguro e informes 
+                    automáticos con análisis detallado de competencias.</p>
+                </div>
+
+                <div class="project-card">
+                    <h3>PawFriends</h3>
+                    <span class="role">Diseñador UI | Desarrollador Web</span>
+                    <p>Plataforma web completa para adopción de mascotas y gestión de donaciones a albergues regionales. 
+                    Sistema integral con panel administrativo.</p>
+                </div>
+
+                <div class="project-card">
+                    <h3>Guitar Heaven</h3>
+                    <span class="role">Jefe de Proyecto | Diseñador UI | Desarrollador Web</span>
+                    <p>E-commerce completo especializado en venta de guitarras y accesorios musicales. 
+                    Incluye carrito de compras, gestión de inventario y pasarela de pagos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="habilidades">
+        <div class="container">
+            <h2 class="section-title">Habilidades Técnicas</h2>
+            <div class="red-line"></div>
+            
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-name">React</div>
+                    <div class="skill-level">Intermedio</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">Django</div>
+                    <div class="skill-level">Intermedio</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">Express.js</div>
+                    <div class="skill-level">Intermedio</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">Flutter</div>
+                    <div class="skill-level">Intermedio</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">UI/UX Design (Figma)</div>
+                    <div class="skill-level">Intermedio</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">PostgreSQL</div>
+                    <div class="skill-level">Intermedio</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">SQL Server</div>
+                    <div class="skill-level">Intermedio</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">Oracle SQL</div>
+                    <div class="skill-level">Intermedio</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">Python</div>
+                    <div class="skill-level">Intermedio</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">SCRUM</div>
+                    <div class="skill-level">Certificado</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">Laravel</div>
+                    <div class="skill-level">Básico</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">MongoDB</div>
+                    <div class="skill-level">Básico</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="educacion">
+        <div class="container">
+            <h2 class="section-title">Educación</h2>
+            <div class="red-line"></div>
+            
+            <div class="education-card">
+                <h3>Instituto de Educación Superior Privado TECSUP</h3>
+                <div class="degree">Diseño y Desarrollo de Software</div>
+                <p class="period">2023 - Presente (6to Ciclo)</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <div class="container">
+            <h2 class="section-title">Hablemos</h2>
+            <p class="section-subtitle">Estoy disponible para nuevas oportunidades y colaboraciones</p>
+            <div class="red-line"></div>
+            
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="icon">📧</div>
+                    <h3>Email</h3>
+                    <a href="mailto:adrian.nunuverochoa@gmail.com">adrian.nunuverochoa@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">💼</div>
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/adrian-nu%C3%B1uvero-ochoa-b5a3a2319/" target="_blank">Ver Perfil</a>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">📱</div>
+                    <h3>Teléfono</h3>
+                    <a href="tel:903095523">903 095 523</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Adrian Nuñuvero Ochoa. Desarrollador Full-Stack.</p>
+        </div>
+    </footer>
+</body>
+</html>
